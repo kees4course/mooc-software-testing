@@ -5,13 +5,16 @@ public class NumFinder {
     private int largest = Integer.MIN_VALUE;
 
     public void find(int[] nums) {
-        for(int n : nums) {
+        if (nums!=null) {
+            smallest = Integer.MAX_VALUE;
+            largest = Integer.MIN_VALUE;
 
-            if(n < smallest)
-                smallest = n;
-            else if (n > largest)
-                largest = n;
+            for (int n : nums) {
 
+                if (n < smallest) smallest = n;
+                if (n > largest) largest = n;
+
+            }
         }
     }
 
