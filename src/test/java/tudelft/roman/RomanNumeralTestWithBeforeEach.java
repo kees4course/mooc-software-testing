@@ -36,4 +36,33 @@ public class RomanNumeralTestWithBeforeEach {
         int result = roman.convert("XLIV");
         Assertions.assertEquals(44, result);
     }
+
+    @Test
+    public void illegalNumber() {
+
+        {
+            int result = roman.convert("VIV");
+            Assertions.assertNotEquals(9, result);
+        }
+        {
+            int result = roman.convert("VIV");
+            Assertions.assertNotEquals(11, result);
+        }
+
+        {
+            int result = roman.convert("IIV");
+            Assertions.assertNotEquals(3, result);
+        }
+
+        {
+            int result = roman.convert("IVV");
+            Assertions.assertNotEquals(9, result);
+        }
+
+        {
+            int result = roman.convert("IIVI");
+            Assertions.assertNotEquals(10, result);
+        }
+    }
 }
+

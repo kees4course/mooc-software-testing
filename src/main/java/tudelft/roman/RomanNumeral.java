@@ -63,8 +63,8 @@ public class RomanNumeral {
         boolean used_L = false;
         boolean used_D = false;
         int current_number = 0;
-        int previous_number = 0;
-        int highest_addition = 2*1000; /* Start with highest symbol-value */
+        int previous_number = 1000;
+        int highest_addition = 1000; /* Start with highest symbol-value */
 
 
         for(int i = 0; i < s.length(); i++) {
@@ -111,7 +111,7 @@ public class RomanNumeral {
 
 
             /* Check rule 3a */
-            if (current_number<highest_addition) {
+            if (current_number<=highest_addition) {
 
                 if (current_number==previous_number) {
                     times_same++;
@@ -122,47 +122,35 @@ public class RomanNumeral {
                     } else {
                         result += current_number;
                     }
-                } else {
-
+                } else  {
                     times_same = 0;
                 }
 
                 /* Set highest allowable addition */
-                if (current_number==1) {
-                    highest_addition = 5;
-                } else {
-                    highest_addition = 10 * current_number;
-                }
+                highest_addition = current_number;
 
                 result += current_number;
             } else {
-
-                /* Symbol is the same? */
-                if (current_number==previous_number) {
-                    times_same++;
-
-                    /* Rule 4a? */
-                    if (times_same>=3) {
-                        throw new Exception("Found symbol'" + current_symbol + "' more than 3 times in a row");
-                    } else {
-                        result += current_number;
-                    }
+                /* Rule 3b? */
+                if (previous_number==1) {
+                    highest_addition = 5;
                 } else {
+                    highest_addition = 10 * previous_number;
+                }
+                if (current_number<=highest_addition) {
 
-                    /* Rule 3b? */
-                    if (current_number<=highest_addition) {
-                        if (times_same==0) {
-                            highest_addition = previous_number - 1;
-                            result = (-previous_number + current_number);
-                        } else {
-                            throw new Exception("Substraction can only applied once");
-                        }
+                    if (times_same == 0) {
+                        highest_addition = current_number - 1;
+                        result += (-2 * previous_number + current_number);
                     } else {
-                        throw new Exception("Right side not lower than left side");
+                        throw new Exception("Substraction can only applied once");
                     }
+
+                    times_same = 0;
+                } else {
+                    throw new Exception("Right side not lower than left side");
                 }
             }
-
 
             previous_number = current_number;
         }
