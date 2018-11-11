@@ -1,39 +1,8 @@
 package tudelft.roman;
 
-import java.util.HashMap;
-import java.util.Map;
 
-public class RomanNumeral {
 
-    private static Map<Character, Integer> map;
-
-    static {
-        map = new HashMap<Character, Integer>();
-        map.put('I', 1);
-        map.put('V', 5);
-        map.put('X', 10);
-        map.put('L', 50);
-        map.put('C', 100);
-        map.put('D', 500);
-        map.put('M', 1000);
-    }
-
-    public int convert(String s) {
-
-        int convertedNumber = 0;
-        for(int i = 0; i < s.length(); i++) {
-            int currentNumber = map.get(s.charAt(i));
-            int next = i+1 < s.length() ? map.get(s.charAt(i+1)) : 0;
-
-            if(currentNumber >= next)
-                convertedNumber += currentNumber;
-            else
-                convertedNumber -= currentNumber;
-        }
-
-        return convertedNumber;
-
-    }
+public class RomanNumeral_Kees {
 
     /*
         Roman number requirements:
@@ -53,7 +22,7 @@ public class RomanNumeral {
          - To check 3b, lowestnumber found will be: 5 if I, 10 x value if other symbol
          - When addition occurs, the added number cannot be lower than the highestnumber found so far
      */
-    public int convert_kees(String s) throws Exception {
+    public int convert(String s) throws Exception {
         int result = 0;
         String roman_number = s.toUpperCase(); /* Rule 2 */
         int times_same = 0;
@@ -130,11 +99,11 @@ public class RomanNumeral {
                 result += current_number;
             } else {
                 /* Rule 3b? */
-                if (previous_number==1) {
-                    highest_addition = 5;
-                } else {
-                    highest_addition = 10 * previous_number;
+                if (current_number<=previous_number) {
+                    throw new Exception("Right side not lower than left side");
                 }
+                highest_addition = 10 * previous_number;
+
                 if (current_number<=highest_addition) {
 
                     if (times_same == 0) {

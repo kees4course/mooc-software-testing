@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 public class RomanNumeralTestWithBeforeEach {
 
-    private RomanNumeral roman;
+    private RomanNumeral roman = new RomanNumeral();
 
     @BeforeEach
     public void initialize() {
@@ -27,8 +27,20 @@ public class RomanNumeralTestWithBeforeEach {
 
     @Test
     public void numberWithSubtractiveNotation() {
-        int result = roman.convert("IV");
-        Assertions.assertEquals(4, result);
+        try {
+            int result = roman.convert("IV");
+            Assertions.assertEquals(4, result);
+            result = roman.convert("VL");
+            Assertions.assertEquals(45, result);
+            result = roman.convert("XC");
+            Assertions.assertEquals(90, result);
+            result = roman.convert("LD");
+            Assertions.assertEquals(450, result);
+            result = roman.convert("CM");
+            Assertions.assertEquals(900, result);
+        } catch (Exception e) {
+            Assertions.fail(e.getMessage());
+        }
     }
 
     @Test
