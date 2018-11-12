@@ -15,7 +15,7 @@ public class RomanNumeral_Kees_SM extends RomanNumeral_Kees {
         4b except V, L and D which are used only 1 time in the whole number
 
          Analyse:
-         - Results in 0 < number < 40000, so result type int is sufficient value
+         - Results in 0 < number < 4000, so result type int is sufficient value
            value -1 could be used to signal error
            value 0 could be used for input of empty-string
          - When next symbol has higher value than previous, apply 3b
