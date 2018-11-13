@@ -11,10 +11,14 @@ public class CaesarShiftCipher {
 
         for(int i = 0; i < length; i++){
             currentChar = message.charAt(i);
-           
-            sb.append(currentChar);
+
             if (currentChar > 'z' || currentChar < 'a') {
-                return "invalid";
+                /* Spaces also allowed, but its not specified what to do with it */
+                if (currentChar==' ') {
+                    continue;
+                } else {
+                    return "invalid";
+                }
             } else if ((char) (currentChar + shift) > 'z') {
                 currentChar = (char) (currentChar - 26);
             } else if ((char) (currentChar + shift) < 'a'){
