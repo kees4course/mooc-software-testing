@@ -171,8 +171,8 @@ public class TwoNumbersSumTest {
     @ParameterizedTest
     @CsvSource({
             "'1','9',10",
-            "'11','9',20",
-            "'9,9','9',118"
+            "'1,1','9',20",
+            "'9,9','9',108"
     })
     void TwoNumbersSumTestWithCarry(String sFirst, String sSecond, Integer result) {
         try {
