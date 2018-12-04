@@ -28,8 +28,7 @@ public class TwoNumbersSumTest {
     static ArrayList<Integer> String2ArrayList(@NotNull String source) throws Exception {
         ArrayList<Integer> result = new ArrayList<Integer>();
 
-        //if (source.matches("[1-9](,\\d)*")) {
-        if (source.matches("((\\+|-){0,1}\\d)(,\\d)*")) {
+        if (source.matches("((\\+|-){0,1}[0-9])(,[0-9])*")) {
             for (String digit: ((String) source).split(",")) {
                 result.add(Integer.valueOf(digit));
             }
@@ -118,6 +117,7 @@ public class TwoNumbersSumTest {
     @ParameterizedTest
     @CsvSource({
             "'a'",
+            "11"
     })
     void DigitCharacterArrayConverterTestInvalid(String sDigits) {
         try {
@@ -186,6 +186,5 @@ public class TwoNumbersSumTest {
             Assertions.fail(e.getMessage());
         }
     }
-
 
 }
