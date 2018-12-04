@@ -53,6 +53,6 @@ public class CaesarShiftCipherTest {
         String outcome = caesarshift.CaesarShiftCipher(message,shift);
         Assertions.assertEquals(result,outcome);
     }
-    
+
 
 }
